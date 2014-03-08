@@ -5,9 +5,8 @@
  */
 
 require_once __DIR__."/idiorm.php";
-require_once __DIR__."/User.class.php";
 require_once __DIR__."/functions.php";
-
+require_once __DIR__."/Role.class.php";
 /**
  * Configure Idiorm
  */
@@ -31,7 +30,7 @@ ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAME
 session_name('ctv');
 
 // Uncomment to keep people logged in for a week
-session_set_cookie_params(60 * 60 * 24 * 7);
+//session_set_cookie_params(60 * 60 * 24 * 7);
 
 session_start();
 
@@ -49,3 +48,5 @@ if(!$fromEmail){
 	// This is only used if you haven't filled an email address in $fromEmail
 	$fromEmail = 'noreply@'.$_SERVER['SERVER_NAME'];
 }
+
+?>

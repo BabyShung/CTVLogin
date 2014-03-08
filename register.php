@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/main.php';
+require_once "includes/Register.class.php";
 
 
 /*--------------------------------------------------
@@ -12,10 +13,10 @@ require_once 'includes/main.php';
 if(isset($_GET['tkn'])){
 
 	// Is this a valid login token?
-	$user = User::findByToken($_GET['tkn']);
+	$register = Register::findByToken($_GET['tkn']);
 
-	if($user){
-		$user->login();
+	if($register){
+		$register->login();
 		redirect('protected.php');
 	}
 	// Invalid token. Redirect back to the login form.
@@ -26,8 +27,9 @@ if(isset($_GET['tkn'])){
 	Don't show the login page to already 
 	logged-in users.
 ---------------------------------------------------*/
-$user = new User();
-if($user->loggedIn()){
+
+$register = new Register(null,1);
+if($register->loggedIn()){
 	redirect('protected.php');
 }
 
@@ -60,16 +62,16 @@ try{
 
 
 		// Attempt to register
-		$user = User::Register($email,$password);
+		$register = Register::Registeration($email,$password);
 
-	    if(!$user)
+	    if(!$register)
 			throw new Exception("Email already exists.");
 		
 		$message = '';
 		$subject = "Welcome to ChalkTheVote!";
 		$message = "Thank you for registering at our site!\n\n";
 		$message.= "Click this link to activiate your account:\n";
-		$message.= get_page_url()."?tkn=".$user->generateToken()."\n\n";
+		$message.= get_page_url()."?tkn=".$register->generateToken()."\n\n";
 		$message.= "The link will be expire after 10 minutes.";
 		$result = send_email($fromEmail, $email, $subject, $message);
 		if(!$result){

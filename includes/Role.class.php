@@ -3,66 +3,48 @@
 class Role{
 
 	// Private ORM instance
-	private $orm;
+	protected $orm;
 
-
-	/**
-	 * Create a new user and save it to the database
-	 * @param string $email The user's email address
-	 * @return User
-	 */
-
-	private static function create($email){
-
-		// Write a new user to the database and return it
-
-		$result = ORM::for_table('reg_users')->create();
-		$result->email = $email;
-		$result->save();
-
-		return new User($result);
+	public static function getTableName($pin){
+		if($pin == 0)
+			$table = "registers";
+		else if($pin == 1)
+			$table = "users";
+			
+		return $table;
 	}
 
-	/**
-	 * Check whether such a user exists in the database and return a boolean.
-	 * @param string $email The user's email address
-	 * @return boolean
-	 */
-
-	public static function exists($email){
+	public static function exists($email,$pin){
 
 		// Does the user exist in the database?
-		$result = ORM::for_table('reg_users')
+		$result = ORM::for_table(Role::getTableName($pin))
 					->where('email', $email)
 					->count();
-
 		return $result == 1;
 	}
-
+ 
 	/**
 	 * Create a new user object
 	 * @param $param ORM instance, id, email or null
 	 * @return User
 	 */
 
-	public function __construct($param = null){
+	public function __construct($param,$pin){
+
+		$tableName = Role::getTableName($pin);
 
 		if($param instanceof ORM){
-
 			// An ORM instance was passed
 			$this->orm = $param;
 		}
 		else if(is_string($param)){
-
 			// An email was passed
-			$this->orm = ORM::for_table('reg_users')
+			$this->orm = ORM::for_table($tableName)
 							->where('email', $param)
 							->find_one();
 		}
 		else{
-
 			$id = 0;
-
 			if(is_numeric($param)){
 				// A user id was passed as a parameter
 				$id = $param;
@@ -73,14 +55,12 @@ class Role{
 				$id = $_SESSION['loginid'];
 			}
 
-			$this->orm = ORM::for_table('reg_users')
+			$this->orm = ORM::for_table($tableName)
 							->where('id', $id)
 							->find_one();
 		}
-
 	}
-
-
+ 
 	/**
 	 * Login this user
 	 * @return void
@@ -152,3 +132,5 @@ class Role{
 		return null;
 	}
 }
+
+?>

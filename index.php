@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/main.php';
+require_once "includes/User.class.php";
 
 /*--------------------------------------------------
 	Handle logging out of the system. The logout
@@ -10,7 +11,7 @@ require_once 'includes/main.php';
 
 if(isset($_GET['logout'])){
 
-	$user = new User();
+	$user = new User(null,1);
 	if($user->loggedIn())
 		$user->logout();
 	redirect('index.php');
@@ -21,10 +22,10 @@ if(isset($_GET['logout'])){
 	Don't show the login page to already 
 	logged-in users.
 ---------------------------------------------------*/
-$user = new User();
+
+$user = new User(null,1);
 if($user->loggedIn())
 	redirect('protected.php');
-
 /*--------------------------------------------------
 	Handle submitting the login form via AJAX
 ---------------------------------------------------*/
@@ -66,7 +67,7 @@ try{
 				'success'=>1
 			)));
 		}
-		elseif(User::exists($email))
+		elseif(User::exists($email,1))
 			throw new Exception("Password incorrect.");
 		else
 			throw new Exception("Email not exist.");

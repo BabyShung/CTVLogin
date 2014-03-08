@@ -4,8 +4,8 @@
 // and create a new User object. It's that simple!
 
 require_once 'includes/main.php';
-
-$user = new User();
+require_once "includes/User.class.php";
+$user = new User(null,1);
 
 if(!$user->loggedIn()){
 	redirect('index.php');
