@@ -2,11 +2,14 @@
 
 // To protect any php page on your site, include main.php
 // and create a new User object. It's that simple!
-
 require_once 'includes/main.php';
 require_once "includes/User.class.php";
-$user = new User(null,1);
 
+/*--------------------------------------------------
+  check loggedin
+  instantiate a user, since there might be operations with DB
+---------------------------------------------------*/
+$user = new User();//use session id to find row in DB
 if(!$user->loggedIn()){
 	redirect('index.php');
 }

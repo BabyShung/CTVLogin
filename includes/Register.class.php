@@ -1,17 +1,17 @@
 <?php
 
 class Register extends Role{
-	/**
-	 * Find a user by a token string. Only valid tokens are taken into
-	 * consideration. A token is valid for 10 minutes after it has been generated.
-	 * @param string $token The token to search for
-	 * @return User
-	 */
 
+	 /*--------------------------------------------------
+	 Activate account:
+	  Find a user by a token string. Only valid tokens are taken into
+	  consideration. A token is valid for 10 minutes after it has been generated.
+	  @param string $token The token to search for
+	  @return User
+	 ---------------------------------------------------*/
 	public static function findByToken($token){
 		
 		// find it in the database and make sure the timestamp is correct
-
 		$result = ORM::for_table('registers')
 						->where('token', $token)
 						->where_raw('token_validity > NOW()')
@@ -19,23 +19,26 @@ class Register extends Role{
 		
 		if(!$result)
 			return false;
-		
+		//update activate in registers table
 		$result->activate = 1;
 		$result->save();
 		
 		$resultUser = ORM::for_table('users')
 						->where('email', $result->email)
 						->find_one();
-						
+		//update activate in users table				
 		$resultUser->activate = 1;
 		$resultUser->save();
 
 		return new Register($resultUser,1);
 	}
 
+	/*----------------------------
+		perform registration
+	----------------------------*/
 	public static function Registeration($email,$passward){
 
-		// If such a user already exists, return false
+		// If such a register already exists, return false
 		if(Register::exists($email,0)){
 			return false;
 		}
@@ -59,12 +62,9 @@ class Register extends Role{
 		return new Register($result,0);
 	}
 
-  
-	/**
-	 * Generates a new SHA1 login token, writes it to the database and returns it.
-	 * @return string
-	 */
-
+  	/*----------------------------------------------------------------------------------
+		Generates a new SHA1 login token, writes it to the database and returns it.
+	----------------------------------------------------------------------------------*/
 	public function generateToken(){
 		// generate a token for the logged in user. Save it to the database.
 

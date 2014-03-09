@@ -2,89 +2,29 @@
 
 require_once 'includes/main.php';
 require_once "includes/User.class.php";
+require_once "includes/form_functions.php";
+
 
 /*--------------------------------------------------
-	Handle logging out of the system. The logout
-	link in protected.php leads here.
+	Handle logging out of the site.
 ---------------------------------------------------*/
-
-
 if(isset($_GET['logout'])){
 
-	$user = new User(null,1);
-	if($user->loggedIn())
-		$user->logout();
+	User::S_logout();
 	redirect('index.php');
 }
 
-
 /*--------------------------------------------------
-	Don't show the login page to already 
-	logged-in users.
+	If already logged in, redirect.
 ---------------------------------------------------*/
-
-$user = new User(null,1);
-if($user->loggedIn())
+if(User::S_loggedIn())
 	redirect('protected.php');
+	
 /*--------------------------------------------------
-	Handle submitting the login form via AJAX
+	Submitting the login form via AJAX
 ---------------------------------------------------*/
+valid_form("login");
 
-
-try{
-
-	if(!empty($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-
-		// Output a JSON header
-		header('Content-type: application/json');
-		
-		$email = trim($_POST['email']);//trim spaces
-		$password = trim($_POST['password']);
-		
-		if(strlen($password)==0)	
-			throw new Exception('Please enter a password.');
-
-		// Is the email address valid?
-		if(!isset($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-			throw new Exception('Please enter a valid email.');
-
-		// This will throw an exception if the person is above 
-		// the allowed login attempt limits (see functions.php for more):
-		rate_limit($_SERVER['REMOTE_ADDR']);
-
-		// Record this login attempt
-		rate_limit_tick($_SERVER['REMOTE_ADDR'], $email);
-
-
-		// Attempt to login
-		$user = User::loginCheck($email,$password);
-
-	    if($user){//query result is back
-			$user->login();
-			//when javascript off?
-			//redirect('protected.php');
-			die(json_encode(array(
-				'success'=>1
-			)));
-		}
-		elseif(User::exists($email,1))
-			throw new Exception("Password incorrect.");
-		else
-			throw new Exception("Email not exist.");
-		
-	}
-}
-catch(Exception $e){
-
-	die(json_encode(array(
-		'error'=>1,
-		'message' => $e->getMessage()
-	)));
-}
-
-/*--------------------------------------------------
-	Output the login form
----------------------------------------------------*/
 
 ?>
 

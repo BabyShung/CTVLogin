@@ -2,14 +2,13 @@
 
 require_once 'includes/main.php';
 require_once "includes/Register.class.php";
+require_once "includes/form_functions.php";
 
 
 /*--------------------------------------------------
-	Handle visits with a login token. If it is
-	valid, log the person in.
+	Visits with a login token.
+	If it is valid, log the person in.
 ---------------------------------------------------*/
-
-
 if(isset($_GET['tkn'])){
 
 	// Is this a valid login token?
@@ -19,77 +18,21 @@ if(isset($_GET['tkn'])){
 		$register->login();
 		redirect('protected.php');
 	}
-	// Invalid token. Redirect back to the login form.
+	// Invalid token. Redirect to login.
 	redirect('index.php');
 }
 
 /*--------------------------------------------------
-	Don't show the login page to already 
-	logged-in users.
+	If already logged in, redirect.
 ---------------------------------------------------*/
-
-$register = new Register(null,1);
-if($register->loggedIn()){
+if(Register::S_loggedIn()){
 	redirect('protected.php');
 }
 
 /*--------------------------------------------------
-	Handle submitting the login form via AJAX
+	Submitting the login form via AJAX
 ---------------------------------------------------*/
-try{
-
-	if(!empty($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
-
-		// Output a JSON header
-		header('Content-type: application/json');
-		
-		$email = trim($_POST['email']);//trim spaces
-		$password = trim($_POST['password']);
-		
-		
-		if(strlen($password)==0)	
-			throw new Exception('Please enter a password.');
-
-		// Is the email address valid?
-		if(!isset($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
-			throw new Exception('Please enter a valid email.');
-
-		// This will throw an exception if the person is above 
-		// the allowed login attempt limits (see functions.php for more):
-		rate_limit($_SERVER['REMOTE_ADDR']);
-		// Record this login attempt
-		rate_limit_tick($_SERVER['REMOTE_ADDR'], $email);
-
-
-		// Attempt to register
-		$register = Register::Registeration($email,$password);
-
-	    if(!$register)
-			throw new Exception("Email already exists.");
-		
-		$message = '';
-		$subject = "Welcome to ChalkTheVote!";
-		$message = "Thank you for registering at our site!\n\n";
-		$message.= "Click this link to activiate your account:\n";
-		$message.= get_page_url()."?tkn=".$register->generateToken()."\n\n";
-		$message.= "The link will be expire after 10 minutes.";
-		$result = send_email($fromEmail, $email, $subject, $message);
-		if(!$result){
-			throw new Exception("There was an error sending your email. Please try again.");
-		}
-
-		die(json_encode(array(
-			'message' => 'Thank you for registering! Please check your email to activate your account.'
-		)));
-		
-	}
-}
-catch(Exception $e){
-	die(json_encode(array(
-		'error'=>1,
-		'message' => $e->getMessage()
-	)));
-}
+valid_form("register");
 ?>
 
 <!DOCTYPE html>

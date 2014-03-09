@@ -15,6 +15,7 @@ class User extends Role{
 			return new User($result,1);
 	}
 	
+
 }
 
 ?>

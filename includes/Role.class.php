@@ -1,35 +1,21 @@
 <?php
-
+/*--------------------------------------------------
+	Structure:
+	Classes: Role, User, Register, Admin
+	
+	User, Register, Admin all extends Role
+---------------------------------------------------*/
 class Role{
 
-	// Private ORM instance
+	// Protected ORM instance
 	protected $orm;
 
-	public static function getTableName($pin){
-		if($pin == 0)
-			$table = "registers";
-		else if($pin == 1)
-			$table = "users";
-			
-		return $table;
-	}
-
-	public static function exists($email,$pin){
-
-		// Does the user exist in the database?
-		$result = ORM::for_table(Role::getTableName($pin))
-					->where('email', $email)
-					->count();
-		return $result == 1;
-	}
+	
  
-	/**
-	 * Create a new user object
-	 * @param $param ORM instance, id, email or null
-	 * @return User
-	 */
-
-	public function __construct($param,$pin){
+	/*--------------------------------------------------
+	 					Constructor
+	 ---------------------------------------------------*/
+	public function __construct($param = null ,$pin = 1){
 
 		$tableName = Role::getTableName($pin);
 
@@ -61,13 +47,27 @@ class Role{
 		}
 	}
  
-	/**
-	 * Login this user
-	 * @return void
-	 */
-
+	/*--------------------------------------------------
+	 					static logout
+	 ---------------------------------------------------*/
+ 	public static function S_logout(){
+		if(isset($_SESSION['loginid'])){
+			$_SESSION = array();
+			unset($_SESSION);	
+		}
+	}
+	
+	/*--------------------------------------------------
+	 					static check loggedin
+	 ---------------------------------------------------*/
+	public static function S_loggedin(){
+		return isset($_SESSION['loginid']);
+	}
+ 
+	/*--------------------------------------------------
+	 					instance login
+	 ---------------------------------------------------*/
 	public function login(){
-		
 		// Mark the user as logged in
 		$_SESSION['loginid'] = $this->orm->id;
 
@@ -76,31 +76,46 @@ class Role{
 		$this->orm->save();
 	}
 
-	/**
-	 * Destroy the session and logout the user.
-	 * @return void
-	 */
-
+	/*--------------------------------------------------
+	 					instance logout
+	 ---------------------------------------------------*/
 	public function logout(){
 		$_SESSION = array();
 		unset($_SESSION);
 	}
 
-	/**
-	 * Check whether the user is logged in.
-	 * @return boolean
-	 */
-
+	/*--------------------------------------------------
+	 					instance check loggedin
+	 ---------------------------------------------------*/
 	public function loggedIn(){
 		return isset($this->orm->id) && $_SESSION['loginid'] == $this->orm->id;
 	}
 
+
+
+	public static function getTableName($pin){
+		if($pin == 0)
+			$table = "registers";
+		else if($pin == 1)
+			$table = "users";
+			
+		return $table;
+	}
+
+	public static function exists($email,$pin){
+
+		// Does the user exist in the database?
+		$result = ORM::for_table(Role::getTableName($pin))
+					->where('email', $email)
+					->count();
+		return $result == 1;
+	}
+	
 	/**
 	 * Check whether the user is an administrator
 	 * @return boolean
-	 */
-
-	public function isAdmin(){
+	 */	
+	 public function isAdmin(){
 		return $this->rank() == 'administrator';
 	}
 
@@ -108,12 +123,10 @@ class Role{
 	 * Find the type of user. It can be either admin or regular.
 	 * @return string
 	 */
-
 	public function rank(){
 		if($this->orm->rank == 1){
 			return 'administrator';
 		}
-
 		return 'regular';
 	}
 
@@ -123,12 +136,10 @@ class Role{
 	 * @param string $key The accessed property's name 
 	 * @return mixed
 	 */
-
 	public function __get($key){
 		if(isset($this->orm->$key)){
 			return $this->orm->$key;
 		}
-
 		return null;
 	}
 }

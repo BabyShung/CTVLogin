@@ -4,13 +4,14 @@
  * Include the libraries
  */
 
-require_once __DIR__."/idiorm.php";
-require_once __DIR__."/functions.php";
-require_once __DIR__."/Role.class.php";
-/**
- * Configure Idiorm
- */
+require_once __DIR__."/idiorm.php";//--DB abstract layer
+require_once __DIR__."/page_functions.php";//--page helpers
+require_once __DIR__."/Role.class.php";//class role
 
+
+/**
+ * Configure DB
+ */
 $db_host = 'localhost';
 $db_name = 'jsolsma1_test';
 $db_user = 'jsolsma1_test';
