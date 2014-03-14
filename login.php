@@ -1,38 +1,31 @@
 <?php
 
 require_once 'includes/main.php';
-require_once "includes/Register.class.php";
+require_once "includes/User.class.php";
 require_once "includes/form_functions.php";
 
 
 /*--------------------------------------------------
-	Visits with a login token.
-	If it is valid, log the person in.
+	Handle logging out of the site.
 ---------------------------------------------------*/
-if(isset($_GET['tkn'])){
+if(isset($_GET['logout'])){
 
-	// Is this a valid login token?
-	$register = Register::findByToken($_GET['tkn']);
-
-	if($register){
-		$register->login();
-		redirect('QBoard/');
-	}
-	// Invalid token. Redirect to login.
+	User::S_logout();
 	redirect('login.php');
 }
 
 /*--------------------------------------------------
 	If already logged in, redirect.
 ---------------------------------------------------*/
-if(Register::S_loggedIn()){
-	redirect('login.php');
-}
-
+if(User::S_loggedIn())
+	redirect('QBoard/');
+	
 /*--------------------------------------------------
 	Submitting the login form via AJAX
 ---------------------------------------------------*/
-valid_register_form();
+valid_login_form();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +33,7 @@ valid_register_form();
 
 	<head>
 		<meta charset="utf-8"/>
-		<title>Register</title>
+		<title>Login</title>
 
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
@@ -54,13 +47,13 @@ valid_register_form();
 
 	<body>
 
-		<form id="login-register" method="post" action="register.php">
+		<form id="login-register" method="post" action="login.php">
 
-			<h1>Register</h1>
-			<input type="text" placeholder="Username" name="username" maxlength="15" autofocus />
-			<input type="text" placeholder="your@email.com" name="email" />
-			<input type="password" placeholder="password" name="password"/>
-			<button type="submit">Register</button>
+			<h1>Login</h1>
+
+			<input type="text" placeholder="username or email" name="email" autofocus />
+			<input type="password" placeholder="password" name="password" />
+			<button type="submit">Login</button>
 
 			<span></span>
 

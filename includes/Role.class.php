@@ -35,10 +35,10 @@ class Role{
 				// A user id was passed as a parameter
 				$id = $param;
 			}
-			else if(isset($_SESSION['loginid'])){
+			else if(isset($_SESSION['user']['loginid'])){
 
 				// No user ID was passed, look into the sesion
-				$id = $_SESSION['loginid'];
+				$id = $_SESSION['user']['loginid'];
 			}
 
 			$this->orm = ORM::for_table($tableName)
@@ -51,7 +51,7 @@ class Role{
 	 					static logout
 	 ---------------------------------------------------*/
  	public static function S_logout(){
-		if(isset($_SESSION['loginid'])){
+		if(isset($_SESSION['user'])){
 			$_SESSION = array();
 			unset($_SESSION);	
 		}
@@ -61,15 +61,23 @@ class Role{
 	 					static check loggedin
 	 ---------------------------------------------------*/
 	public static function S_loggedin(){
-		return isset($_SESSION['loginid']);
+		return isset($_SESSION['user']['loginid']);
 	}
  
 	/*--------------------------------------------------
 	 					instance login
 	 ---------------------------------------------------*/
 	public function login(){
+		
+		
 		// Mark the user as logged in
-		$_SESSION['loginid'] = $this->orm->id;
+		//$_SESSION['loginid'] = $this->orm->id;
+		
+		$_SESSION['user']	= array(
+			'loginid'	=> $this->orm->id,
+			'name'		=> $this->orm->username,
+			'gravatar'	=> md5(strtolower(trim($this->orm->email)))
+		);
 
 		// Update the last_login db field
 		$this->orm->set_expr('last_login', 'NOW()');
@@ -88,7 +96,7 @@ class Role{
 	 					instance check loggedin
 	 ---------------------------------------------------*/
 	public function loggedIn(){
-		return isset($this->orm->id) && $_SESSION['loginid'] == $this->orm->id;
+		return isset($this->orm->id) && $_SESSION['user']['loginid'] == $this->orm->id;
 	}
 
 

@@ -11,7 +11,7 @@ require_once "includes/User.class.php";
 ---------------------------------------------------*/
 $user = new User();//use session id to find row in DB
 if(!$user->loggedIn()){
-	redirect('index.php');
+	redirect('login.php');
 }
 
 ?>
