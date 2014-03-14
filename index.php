@@ -23,7 +23,7 @@ if(User::S_loggedIn())
 /*--------------------------------------------------
 	Submitting the login form via AJAX
 ---------------------------------------------------*/
-valid_form("login");
+valid_login_form();
 
 
 ?>
@@ -51,7 +51,7 @@ valid_form("login");
 
 			<h1>Login</h1>
 
-			<input type="text" placeholder="your@email.com" name="email" autofocus />
+			<input type="text" placeholder="username or email" name="email" autofocus />
 			<input type="password" placeholder="password" name="password" />
 			<button type="submit">Login</button>
 
@@ -60,7 +60,7 @@ valid_form("login");
 		</form>
         
 		<!-- JavaScript Includes -->
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="assets/js/script.js"></script>
 
 	</body>

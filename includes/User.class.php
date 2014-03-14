@@ -3,10 +3,10 @@
 class User extends Role{
 	
 
-	public static function loginCheck($email,$password){
+	public static function loginCheck($field, $email,$password){
 		// Does the user and pwd exist in the database?
 		$result = ORM::for_table('users')
-					->where('email', $email)
+					->where($field, $email)
 					->where('pwd', md5($password))
 					->find_one();
 		if(!$result)

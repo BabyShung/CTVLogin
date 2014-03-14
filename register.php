@@ -32,7 +32,7 @@ if(Register::S_loggedIn()){
 /*--------------------------------------------------
 	Submitting the login form via AJAX
 ---------------------------------------------------*/
-valid_form("register");
+valid_register_form();
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +57,8 @@ valid_form("register");
 		<form id="login-register" method="post" action="register.php">
 
 			<h1>Register</h1>
-
-			<input type="text" placeholder="your@email.com" name="email" autofocus />
+			<input type="text" placeholder="Username" name="username" autofocus />
+			<input type="text" placeholder="your@email.com" name="email" />
 			<input type="password" placeholder="password" name="password"/>
 			<button type="submit">Register</button>
 
@@ -67,7 +67,7 @@ valid_form("register");
 		</form>
         
 		<!-- JavaScript Includes -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="assets/js/script.js"></script>
 
 	</body>

@@ -102,11 +102,11 @@ class Role{
 		return $table;
 	}
 
-	public static function exists($email,$pin){
+	public static function exists($field,$value,$pin){
 
-		// Does the user exist in the database?
+		// Does the value of the field exist in the database?
 		$result = ORM::for_table(Role::getTableName($pin))
-					->where('email', $email)
+					->where($field, $value)
 					->count();
 		return $result == 1;
 	}

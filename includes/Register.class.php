@@ -36,27 +36,34 @@ class Register extends Role{
 	/*----------------------------
 		perform registration
 	----------------------------*/
-	public static function Registeration($email,$passward){
+	public static function Registeration($email,$username,$passward){
 
 		// If such a register already exists, return false
-		if(Register::exists($email,0)){
-			return false;
+		if(Register::exists('username',$username,0)){
+			return -1;
 		}
+		
+		if(Register::exists('email',$email,0)){
+			return -2;
+		}
+		
 		// Otherwise, create it and return it
-		return Register::create($email,$passward);
+		return Register::create($email,$username,$passward);
 	}
 
-	private static function create($email,$passward){
+	private static function create($email,$username,$passward){
 		// insert two tables,first users,second registers
 		//registers id can be users' foreign key
 		
 		$resultUser = ORM::for_table('users')->create();
 		$resultUser->email = $email;
+		$resultUser->username = $username;
 		$resultUser->pwd = md5($passward);
 		$resultUser->save();
 		
 		$result = ORM::for_table('registers')->create();
 		$result->email = $email;
+		$result->username = $username;
 		$result->save();
 
 		return new Register($result,0);

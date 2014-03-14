@@ -1,6 +1,5 @@
 <?php
-
-function valid_form($form){
+function valid_register_form(){
 	try{
 	
 		if(!empty($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
@@ -8,8 +7,16 @@ function valid_form($form){
 			// Output a JSON header
 			header('Content-type: application/json');
 			
-			$email = trim($_POST['email']);//trim spaces
+			//trim spaces
+			$email = trim($_POST['email']);
 			$password = trim($_POST['password']);
+			//another username field
+			$username = trim($_POST['username']);
+	
+			if(strlen($username)==0)	
+				throw new Exception('Please enter a username.');
+			if(strlen($username)>15)	
+				throw new Exception('username should be less than 15 characters.');
 	
 			// Is the email address valid?
 			if(!isset($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -23,52 +30,87 @@ function valid_form($form){
 			rate_limit($_SERVER['REMOTE_ADDR']);
 			// Record this login attempt
 			rate_limit_tick($_SERVER['REMOTE_ADDR'], $email);
-	
-	
-			/********************
-			
-					difference 
-			
-			*********************/
-	
-			if($form == "register"){
-				// Attempt to register
-				$register = Register::Registeration($email,$password);
-		
-				if(!$register)
-					throw new Exception("Email already exists.");
 				
-				$message = '';
-				$subject = "Welcome to ChalkTheVote!";
-				$message = "Thank you for registering at our site!\n\n";
-				$message.= "Click this link to activiate your account:\n";
-				$message.= get_page_url()."?tkn=".$register->generateToken()."\n\n";
-				$message.= "The link will be expire after 10 minutes.";
-				$result = send_email($fromEmail, $email, $subject, $message);
-				if(!$result){
-					throw new Exception("There was an error sending your email. Please try again.");
-				}
-		
-				die(json_encode(array(
-					'message' => 'Thank you for registering! Please check your email to activate your account.'
-				)));
-			}else if($form == "login"){
-			    // Attempt to login
-				$user = User::loginCheck($email,$password);
-		
-				if($user){//query result is back
-					$user->login();
-					//when javascript off?
-					//redirect('protected.php');
-					die(json_encode(array(
-						'success'=>1
-					)));
-				}
-				elseif(User::exists($email,1))
-					throw new Exception("Password incorrect.");
-				else
-					throw new Exception("Email not exist.");	
+			// Attempt to register
+			$register = Register::Registeration($email,$username,$password);
+	
+			if($register == -1)
+				throw new Exception("Username already exists.");
+			elseif($register == -2)
+				throw new Exception("Email already exists.");
+				
+			$message = '';
+			$subject = "Welcome to ChalkTheVote!";
+			$message = "Thank you for registering at our site!\n\n";
+			$message.= "Click this link to activiate your account:\n";
+			$message.= get_page_url()."?tkn=".$register->generateToken()."\n\n";
+			$message.= "The link will be expire after 10 minutes.";
+			$result = send_email($fromEmail, $email, $subject, $message);
+			if(!$result){
+				throw new Exception("There was an error sending your email. Please try again.");
 			}
+	
+			die(json_encode(array(
+				'message' => 'Thank you for registering! Please check your email to activate your account.'
+			)));		
+		}
+	}
+	catch(Exception $e){
+		die(json_encode(array(
+			'error'=>1,
+			'message' => $e->getMessage()
+		)));
+	}
+
+}
+
+
+function valid_login_form(){
+	try{
+	
+		if(!empty($_POST) && isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+	
+			// Output a JSON header
+			header('Content-type: application/json');
+			
+			//trim spaces
+			$email = trim($_POST['email']);
+			$password = trim($_POST['password']);
+	
+			if(strlen($email)==0)	//why isset($email) not working???
+				throw new Exception('Please enter a username or email.');
+	
+			if(strlen($password)==0)	
+				throw new Exception('Please enter a password.');
+	
+	
+			// This will throw an exception if the person is above 
+			// the allowed login attempt limits (see functions.php for more):
+			rate_limit($_SERVER['REMOTE_ADDR']);
+			// Record this login attempt
+			rate_limit_tick($_SERVER['REMOTE_ADDR'], $email);
+	
+			
+			if(!filter_var($email, FILTER_VALIDATE_EMAIL))	//assume using username to login
+				$field = 'username';
+			else	//assume using email
+				$field = 'email';
+	
+			$user = User::loginCheck($field , $email,$password);
+	
+			if($user){//query result is back
+				$user->login();
+				//when javascript off?
+				//redirect('protected.php');
+				die(json_encode(array(
+					'success'=>1
+				)));
+			}
+			elseif(User::exists($field,$email,1))
+				throw new Exception("Password incorrect.");
+			else
+				throw new Exception(ucfirst($field)." not exist.");	
+			
 			
 		}
 	}
