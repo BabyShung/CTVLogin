@@ -1,9 +1,5 @@
 $(document).ready(function(){
-	
-	/* An object with element selectors and margin values */
-	
-	
-	
+
 	var herizon = {
 		'#step1 a.next'	    : '-100%'
 	}
@@ -21,8 +17,7 @@ $(document).ready(function(){
 	
 	$.each(herizon,function(key,val){
 		$(key).click(function(){
-			rightBtn.fadeIn();
-			b.animate({marginLeft:val});
+			
 			return false;
 		});
 	});
@@ -45,14 +40,53 @@ $(document).ready(function(){
 		b.animate({marginLeft:0});
 	});
  
- 
-	// An additional click handler for the finish button:
+
+	/**********************
 	
-	$('#step2 a.finish').click(function(){
+		Caching the tabs into a variable
 		
+	***********************/
+
+	var the_mods = $('#step1 a.next');
+	the_mods.click(function(e){
 		
-	});
+		var element = $(this);//the link
 	
-	
+		if(!element.data('cache'))// Checking if has cached
+		{	
+			$.get(element.attr('href'),function(msg){
+						
+				$('#step2').html(msg);
+				element.data('cache',msg);// save the cache
+		
+				//after having the html, then add css file and load js file
+				$('head').append('<link rel="stylesheet" href="assets/css/loginRegister_part.css" type="text/css" />');
+				getScriptCcd('assets/js/loginRegister.js', slideRight );
+				
+			});
+		}
+		else{ 
+			$('#step2').html(element.data('cache'));
+			getScriptCcd('assets/js/loginRegister.js', slideRight);
+		}
+		e.preventDefault();
+	})
+
 
 });
+
+function getScriptCcd(url, callback)
+{
+    jQuery.ajax({
+            type: "GET",
+            url: url,
+            success: callback,
+            dataType: "script",
+            cache: true
+    });
+};
+
+function slideRight() {
+		$('a.rightBtn').fadeIn();
+		$('body').animate({marginLeft:'-100%'});
+}

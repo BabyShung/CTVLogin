@@ -1,13 +1,11 @@
 $(function(){
 
 	var form = $('#login-register');
-
 	form.on('submit', function(e){
 
 		if(form.is('.loading, .loggedIn')){
 			return false;
 		}
-
 		var messageHolder = form.find('span');
 
 		e.preventDefault();
@@ -20,7 +18,9 @@ $(function(){
 					   success: function(m){
 			if(m.error){
 				form.addClass('error');
-				messageHolder.text(m.message);
+	
+				//displayMessage(m.message,'errorMessage');
+				messageHolder.text(m.message);	
 			}
 			else{
 				if(m.success){//login success
@@ -28,6 +28,7 @@ $(function(){
 				}
 				
 				form.removeClass('error').addClass('loggedIn');
+			 	//displayMessage(m.message,'successMessage');
 				messageHolder.text(m.message);
 			}
 		  }
@@ -42,4 +43,7 @@ $(function(){
 	$(document).ajaxComplete(function(){
 		form.removeClass('loading');
 	});
+	
+	
 });
+

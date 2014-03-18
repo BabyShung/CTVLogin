@@ -41,6 +41,40 @@ section, footer, header, aside{
 
 
 /*-------------------------
+	display message
+--------------------------*/
+
+#errorMessage{
+	width:100%;
+	top:0;
+	left:0;
+	position:fixed;
+	background-color:#ab0909;
+	border-bottom:1px solid #d32a2a;
+	font-size:23px;
+	padding:16px;
+	text-align:center;
+	color:#fff;
+	
+	text-shadow:1px 1px 0 #940f0f;
+}
+
+#successMessage{
+	width:100%;
+	top:0;
+	left:0;
+	position:fixed;
+	background-color:#85bb2f;
+	border-bottom:1px solid #d32a2a;
+	font-size:23px;
+	padding:16px;
+	text-align:center;
+	color:#fff;
+	
+	text-shadow:1px 1px 0 #940f0f;
+}
+
+/*-------------------------
 	The Login Form
 --------------------------*/
 
