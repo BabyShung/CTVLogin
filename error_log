@@ -33,3 +33,151 @@ Stack trace:
 [07-Mar-2014 16:32:32 America/Chicago] PHP Parse error:  syntax error, unexpected 'throw' (T_THROW) in /home3/jsolsma1/public_html/Testing/register.php on line 60
 [07-Mar-2014 21:30:26 America/Chicago] PHP Fatal error:  Call to a member function login() on a non-object in /home3/jsolsma1/public_html/Testing/index.php on line 66
 [07-Mar-2014 21:38:20 America/Chicago] PHP Fatal error:  Call to a member function login() on a non-object in /home3/jsolsma1/public_html/Testing/index.php on line 66
+[08-Mar-2014 16:58:14 America/Chicago] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home3/jsolsma1/public_html/Testing/register.php on line 29
+[08-Mar-2014 16:59:30 America/Chicago] PHP Fatal error:  Class 'Role' not found in /home3/jsolsma1/public_html/Testing/includes/User.class.php on line 3
+[08-Mar-2014 17:01:53 America/Chicago] PHP Fatal error:  Class 'Role' not found in /home3/jsolsma1/public_html/Testing/includes/User.class.php on line 3
+[08-Mar-2014 17:01:58 America/Chicago] PHP Fatal error:  Class 'Role' not found in /home3/jsolsma1/public_html/Testing/includes/User.class.php on line 3
+[08-Mar-2014 17:02:43 America/Chicago] PHP Warning:  require_once(/home3/jsolsma1/public_html/Testing/Register.class.php): failed to open stream: No such file or directory in /home3/jsolsma1/public_html/Testing/register.php on line 4
+[08-Mar-2014 17:02:43 America/Chicago] PHP Fatal error:  require_once(): Failed opening required '/home3/jsolsma1/public_html/Testing/Register.class.php' (include_path='.:/opt/php54/lib/php') in /home3/jsolsma1/public_html/Testing/register.php on line 4
+[08-Mar-2014 17:06:48 America/Chicago] PHP Fatal error:  Class 'Role' not found in /home3/jsolsma1/public_html/Testing/includes/Register.class.php on line 3
+[08-Mar-2014 17:09:04 America/Chicago] PHP Fatal error:  Class 'Role' not found in /home3/jsolsma1/public_html/Testing/includes/Register.class.php on line 3
+[08-Mar-2014 17:09:06 America/Chicago] PHP Fatal error:  Class 'Role' not found in /home3/jsolsma1/public_html/Testing/includes/Register.class.php on line 3
+[08-Mar-2014 17:11:38 America/Chicago] PHP Fatal error:  Call to undefined function getTableName() in /home3/jsolsma1/public_html/Testing/includes/Role.class.php on line 34
+[08-Mar-2014 17:12:36 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(64): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(30): Role->__construct(NULL, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:16:12 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(64): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(30): Role->__construct(NULL, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:17:01 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(64): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(30): Role->__construct(NULL, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:18:15 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(60): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(30): Role->__construct(0, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:18:17 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(60): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(30): Role->__construct(0, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:18:28 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(60): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(30): Role->__construct(1, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:19:55 America/Chicago] PHP Fatal error:  Call to undefined function getTableName() in /home3/jsolsma1/public_html/Testing/includes/Role.class.php on line 20
+[08-Mar-2014 17:20:29 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(60): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(32): Role->__construct(0, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:22:19 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(60): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(32): Role->__construct(0, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:22:29 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(60): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/register.php(32): Role->__construct(0, 1)
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:27:56 America/Chicago] PHP Fatal error:  Class 'User' not found in /home3/jsolsma1/public_html/Testing/protected.php on line 8
+[08-Mar-2014 17:29:07 America/Chicago] PHP Warning:  Missing argument 1 for Role::__construct(), called in /home3/jsolsma1/public_html/Testing/protected.php on line 8 and defined in /home3/jsolsma1/public_html/Testing/includes/Role.class.php on line 32
+[08-Mar-2014 17:29:07 America/Chicago] PHP Warning:  Missing argument 2 for Role::__construct(), called in /home3/jsolsma1/public_html/Testing/protected.php on line 8 and defined in /home3/jsolsma1/public_html/Testing/includes/Role.class.php on line 32
+[08-Mar-2014 17:29:07 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/jsolsma1/public_html/Testing/includes/Role.class.php:32) in /home3/jsolsma1/public_html/Testing/includes/functions.php on line 64
+[08-Mar-2014 17:40:53 America/Chicago] PHP Warning:  Missing argument 1 for Role::__construct(), called in /home3/jsolsma1/public_html/Testing/index.php on line 14 and defined in /home3/jsolsma1/public_html/Testing/includes/Role.class.php on line 32
+[08-Mar-2014 17:40:53 America/Chicago] PHP Warning:  Missing argument 2 for Role::__construct(), called in /home3/jsolsma1/public_html/Testing/index.php on line 14 and defined in /home3/jsolsma1/public_html/Testing/includes/Role.class.php on line 32
+[08-Mar-2014 17:40:53 America/Chicago] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home3/jsolsma1/public_html/Testing/includes/Role.class.php:32) in /home3/jsolsma1/public_html/Testing/includes/functions.php on line 64
+[08-Mar-2014 17:50:32 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1646): ORM::_execute('UPDATE `registe...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(76): ORM->save()
+#3 /home3/jsolsma1/public_html/Testing/register.php(19): Role->login()
+#4 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[08-Mar-2014 17:51:48 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'activate' in 'field list'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1646): ORM::_execute('UPDATE `users` ...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/Register.class.php(31): ORM->save()
+#3 /home3/jsolsma1/public_html/Testing/register.php(16): Register::findByToken('5e37ff54b433a56...')
+#4 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[09-Mar-2014 15:41:44 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home3/jsolsma1/public_html/Testing/index.php on line 24
+[09-Mar-2014 16:09:56 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1103 Incorrect table name ''' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(44): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/protected.php(12): Role->__construct()
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[09-Mar-2014 16:13:16 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1103 Incorrect table name ''' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(44): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/protected.php(12): Role->__construct()
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[09-Mar-2014 16:13:26 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1103 Incorrect table name ''' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1501): ORM::_execute('SELECT * FROM `...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(511): ORM->_run()
+#3 /home3/jsolsma1/public_html/Testing/includes/Role.class.php(44): ORM->find_one()
+#4 /home3/jsolsma1/public_html/Testing/protected.php(12): Role->__construct()
+#5 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
+[09-Mar-2014 16:14:45 America/Chicago] PHP Fatal error:  Call to a member function rank() on a non-object in /home3/jsolsma1/public_html/Testing/protected.php on line 38
+[09-Mar-2014 18:06:04 America/Chicago] PHP Warning:  stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:14094410:SSL routines:SSL3_READ_BYTES:sslv3 alert handshake failure in /home3/jsolsma1/public_html/Testing/simplepush.php on line 21
+[09-Mar-2014 18:06:04 America/Chicago] PHP Warning:  stream_socket_client(): Failed to enable crypto in /home3/jsolsma1/public_html/Testing/simplepush.php on line 21
+[09-Mar-2014 18:06:04 America/Chicago] PHP Warning:  stream_socket_client(): unable to connect to ssl://gateway.sandbox.push.apple.com:2195 (Unknown error) in /home3/jsolsma1/public_html/Testing/simplepush.php on line 21

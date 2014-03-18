@@ -1,67 +1,47 @@
-<?php
-
-require_once 'includes/main.php';
-require_once "includes/User.class.php";
-require_once "includes/form_functions.php";
-
-
-/*--------------------------------------------------
-	Handle logging out of the site.
----------------------------------------------------*/
-if(isset($_GET['logout'])){
-
-	User::S_logout();
-	redirect('index.php');
-}
-
-/*--------------------------------------------------
-	If already logged in, redirect.
----------------------------------------------------*/
-if(User::S_loggedIn())
-	redirect('protected.php');
-	
-/*--------------------------------------------------
-	Submitting the login form via AJAX
----------------------------------------------------*/
-valid_login_form();
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta charset="utf-8"/>
-		<title>Login</title>
-
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-
-		<!-- The main CSS file -->
-		<link href="assets/css/style.css" rel="stylesheet" />
-
-		<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
+		<title>ChalkTheVote</title>
+        
+		<link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="assets/css/mainPage.css" />
+        
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="assets/js/mainPage.js"></script>
 	</head>
 
-	<body>
 
-		<form id="login-register" method="post" action="index.php">
 
-			<h1>Login</h1>
 
-			<input type="text" placeholder="username or email" name="email" autofocus />
-			<input type="password" placeholder="password" name="password" />
-			<button type="submit">Login</button>
+<body>
 
-			<span></span>
+    <a class="bottomBtn"></a>
+     <a class="rightBtn"></a>
 
-		</form>
-        
-		<!-- JavaScript Includes -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="assets/js/script.js"></script>
+    <div class="step" id="step1">
+        <div class="section">
+        	<h1>ChalkTheVote</h1>
+            <input type="text" placeholder= "Enter 4-digit token" />
+            <a href="#" class="button next">Next</a>
+            <a href="#" class="button down">Down</a>
+        </div>
+    </div>
+    
+    <div class="step" id="step2">
+        <div class="section">
+        </div>
+    </div>
+    
+    <div class="step2" id="step3">
+        <div class="section">
+        </div>
+    </div>
 
-	</body>
+
+
+    
+
+</body>
 </html>

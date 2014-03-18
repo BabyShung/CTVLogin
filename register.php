@@ -45,7 +45,7 @@ valid_register_form();
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
 		<!-- The main CSS file -->
-		<link href="assets/css/style.css" rel="stylesheet" />
+		<link href="assets/css/loginRegister.css" rel="stylesheet" />
 
 		<!--[if lt IE 9]>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -68,7 +68,7 @@ valid_register_form();
         
 		<!-- JavaScript Includes -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="assets/js/script.js"></script>
+		<script src="assets/js/loginRegister.js"></script>
 
 	</body>
 </html>

@@ -24,7 +24,7 @@ $(function(){
 			}
 			else{
 				if(m.success){//login success
-					location.href='protected.php';	
+					location.href='QBoard/';	
 				}
 				
 				form.removeClass('error').addClass('loggedIn');

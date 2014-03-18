@@ -24,7 +24,7 @@ if(!$user->loggedIn()){
 		<title>Protected page</title>
 
 		<!-- The main CSS file -->
-		<link href="assets/css/style.css" rel="stylesheet" />
+		<link href="assets/css/loginRegister.css" rel="stylesheet" />
 
 		<!--[if lt IE 9]>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
