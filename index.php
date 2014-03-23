@@ -17,6 +17,7 @@
 
 
 <body>
+	<div class="topbar" ><img class="ctvlogo" src="assets/img/chalktheVote_small_logo.png" alt="logo" height="28px" width="150px"/> ss</div>
 
     <a class="bottomBtn"></a>
      <a class="rightBtn"></a>
@@ -39,7 +40,10 @@
         <div class="section">
         </div>
     </div>
-
+	<div class="step" id="step4">
+        <div class="section">
+        </div>
+    </div>
 
 	<div class="clear"></div>
     

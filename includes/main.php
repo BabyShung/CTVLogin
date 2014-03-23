@@ -3,11 +3,9 @@
 /**
  * Include the libraries
  */
-
 require_once __DIR__."/idiorm.php";//--DB abstract layer
 require_once __DIR__."/page_functions.php";//--page helpers
 require_once __DIR__."/Role.class.php";//class role
-
 
 /**
  * Configure DB
@@ -35,9 +33,9 @@ session_name('ctv');
 
 session_start();
 
-/**
- * Other settings
- */
+/******************************
+ * 		Email settings
+ *****************************/
 
 // The "from" email address that is used in the emails that are sent to users.
 // Some hosting providers block outgoing email if this address
@@ -49,5 +47,6 @@ if(!$fromEmail){
 	// This is only used if you haven't filled an email address in $fromEmail
 	$fromEmail = 'noreply@'.$_SERVER['SERVER_NAME'];
 }
+
 
 ?>

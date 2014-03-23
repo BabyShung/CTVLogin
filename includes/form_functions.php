@@ -1,4 +1,10 @@
 <?php
+
+
+
+/*******************************
+ * 		functions
+ *****************************/
 function valid_register_form(){
 	try{
 	
@@ -8,7 +14,7 @@ function valid_register_form(){
 			header('Content-type: application/json');
 			
 			//trim spaces
-			$email = trim($_POST['email']);
+			$email = strtolower(trim($_POST['email']));
 			$password = trim($_POST['password']);
 			//another username field
 			$username = trim($_POST['username']);

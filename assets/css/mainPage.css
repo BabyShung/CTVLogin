@@ -38,6 +38,24 @@ body{
 	clear:both;
 }
 	
+/* ----------topbar ----------*/
+
+.topbar{
+	width:100%;
+	top:0;
+	left:0;
+	height:50px;
+	position:fixed;
+	background:url('../img/solid_gray.jpg') #e5e5e5;
+	border-bottom:1px solid #E8E8E8;
+	font-size:20px;
+	color:#666666;
+	z-index: 9;
+}
+
+.ctvlogo{
+	margin:10px 0 0 20px;
+}
 
 /* ----------Step 1 ----------*/
 
@@ -97,7 +115,11 @@ body{
 
 /* Step 3 */
 
-#step3{ background:url('../img/bg_3.jpg') no-repeat center center #6a4214;}
+#step3{ background:url('../img/bg_1.jpg') no-repeat center center #175665;}
+
+/* Step 4 */
+
+#step4{ background:url('../img/bg_2.jpg') no-repeat center center #6f7c18;}
 
 
 /* Each step contains a section, centered in the page */
@@ -122,7 +144,7 @@ a.bottomBtn{
 	background: url('../img/icons.svg') no-repeat -192px 0;
 	position: fixed;
 	cursor: pointer;
-	top: 50px;
+	top: 70px;
 	left: 50%;/* keep track on brower*/
 	z-index: 10;
 	opacity: 0.8;

@@ -49,11 +49,13 @@ $(document).ready(function(){
 
 	var the_mods = $('#step1 a.next');
 	the_mods.click(function(e){
+		if($('#login-register').length){
+			slideRight();
+			return false;
+		}
 		
 		var element = $(this);//the link
-	
-		if(!element.data('cache'))// Checking if has cached
-		{	
+		
 			$.get(element.attr('href'),function(msg){
 						
 				$('#step2').html(msg);
@@ -64,11 +66,8 @@ $(document).ready(function(){
 				getScriptCcd('assets/js/loginRegister.js', slideRight );
 				
 			});
-		}
-		else{ 
-			$('#step2').html(element.data('cache'));
-			getScriptCcd('assets/js/loginRegister.js', slideRight);
-		}
+		
+		
 		e.preventDefault();
 	})
 
@@ -82,11 +81,12 @@ function getScriptCcd(url, callback)
             url: url,
             success: callback,
             dataType: "script",
-            cache: true
+            cache: false
     });
 };
 
 function slideRight() {
 		$('a.rightBtn').fadeIn();
 		$('body').animate({marginLeft:'-100%'});
+		//$('body').animate({marginLeft:'-100%',top:'-100%'});
 }

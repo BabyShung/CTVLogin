@@ -181,3 +181,11 @@ Stack trace:
 error:14094410:SSL routines:SSL3_READ_BYTES:sslv3 alert handshake failure in /home3/jsolsma1/public_html/Testing/simplepush.php on line 21
 [09-Mar-2014 18:06:04 America/Chicago] PHP Warning:  stream_socket_client(): Failed to enable crypto in /home3/jsolsma1/public_html/Testing/simplepush.php on line 21
 [09-Mar-2014 18:06:04 America/Chicago] PHP Warning:  stream_socket_client(): unable to connect to ssl://gateway.sandbox.push.apple.com:2195 (Unknown error) in /home3/jsolsma1/public_html/Testing/simplepush.php on line 21
+[19-Mar-2014 11:40:55 America/Chicago] PHP Catchable fatal error:  Object of class ORM could not be converted to string in /home3/jsolsma1/public_html/Testing/testing.php on line 13
+[19-Mar-2014 11:42:31 America/Chicago] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '1' for key 'PRIMARY'' in /home3/jsolsma1/public_html/Testing/includes/idiorm.php:349
+Stack trace:
+#0 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(349): PDOStatement->execute(Array)
+#1 /home3/jsolsma1/public_html/Testing/includes/idiorm.php(1646): ORM::_execute('INSERT INTO `co...', Array, 'default')
+#2 /home3/jsolsma1/public_html/Testing/testing.php(13): ORM->save()
+#3 {main}
+  thrown in /home3/jsolsma1/public_html/Testing/includes/idiorm.php on line 349
