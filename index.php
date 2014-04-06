@@ -17,7 +17,7 @@
 
 
 <body>
-	<div class="topbar" ><img class="ctvlogo" src="assets/img/chalktheVote_small_logo.png" alt="logo" height="28px" width="150px"/> ss</div>
+	<div class="topbar" ><img class="ctvlogo" src="assets/img/chalktheVote_small_logo.png" alt="logo" height="28px" width="150px"/></div>
 
     <a class="bottomBtn"></a>
      <a class="rightBtn"></a>
